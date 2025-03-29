@@ -1,23 +1,116 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+
+const questions = [
+  {
+    question: "Em que ano João Paulo II foi eleito Papa?",
+    answers: ["1978", "1981", "1965", "1990"],
+    correct: 0,
+  },
+  {
+    question: "Qual era o nome de batismo de João Paulo II?",
+    answers: ["Karol Wojtyła", "Angelo Roncalli", "Joseph Ratzinger", "Jorge Bergoglio"],
+    correct: 0,
+  },
+  {
+    question: "Qual foi o país de origem de João Paulo II?",
+    answers: ["Itália", "Polônia", "Espanha", "Alemanha"],
+    correct: 1,
+  },
+  {
+    question: "Qual foi o principal atentado que ele sofreu?",
+    answers: ["Facada no Vaticano", "Atentado a tiros na Praça de São Pedro", "Explosão na Basílica de São Pedro", "Sequestro em viagem"],
+    correct: 1,
+  },
+  {
+    question: "Qual grande evento para jovens foi criado por João Paulo II?",
+    answers: ["Jornada Mundial da Juventude", "Encontro Mundial das Famílias", "Festival Internacional da Fé", "Missão Católica Global"],
+    correct: 0,
+  },
+];
 
 function App() {
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [score, setScore] = useState(0);
+  const [musicPlaying, setMusicPlaying] = useState(false);
+  const [isFinished, setIsFinished] = useState(false);
+
+  const musicRef = React.createRef();
+
+  useEffect(() => {
+    if (musicPlaying) {
+      musicRef.current.play();
+    } else {
+      musicRef.current.pause();
+    }
+  }, [musicPlaying]);
+
+  const handleAnswer = (index) => {
+    const correctAnswer = questions[currentQuestion].correct;
+    if (index === correctAnswer) {
+      setScore(score + 1);
+    }
+
+    const nextQuestion = currentQuestion + 1;
+    if (nextQuestion < questions.length) {
+      setCurrentQuestion(nextQuestion);
+    } else {
+      setIsFinished(true);
+    }
+  };
+
+  const handleMusicToggle = () => {
+    setMusicPlaying(!musicPlaying);
+  };
+
+  const handleStartGame = () => {
+    setCurrentQuestion(0);
+    setScore(0);
+    setIsFinished(false);
+    setMusicPlaying(true);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" style={{ textAlign: "center", padding: "20px" }}>
+      <button onClick={handleStartGame} style={{ padding: "10px", marginBottom: "20px" }}>
+        🎮 Iniciar Quiz
+      </button>
+      <button onClick={handleMusicToggle} style={{ padding: "10px", marginBottom: "20px" }}>
+        {musicPlaying ? "🔇 Pausar Música" : "🔊 Tocar Música"}
+      </button>
+
+      {!isFinished ? (
+        <div>
+          <h2>{questions[currentQuestion].question}</h2>
+          <div>
+            {questions[currentQuestion].answers.map((answer, index) => (
+              <button
+                key={index}
+                onClick={() => handleAnswer(index)}
+                style={{
+                  padding: "10px",
+                  margin: "5px",
+                  backgroundColor: "lightblue",
+                  borderRadius: "5px",
+                }}
+              >
+                {answer}
+              </button>
+            ))}
+          </div>
+          <p>Pontuação: {score}</p>
+        </div>
+      ) : (
+        <div>
+          <h2>Fim do jogo!</h2>
+          <p>Sua pontuação: {score} de {questions.length}</p>
+        </div>
+      )}
+
+      {/* Música */}
+      <audio ref={musicRef} loop>
+        <source src="https://www.myinstants.com/media/sounds/super-mario-bros.mp3" type="audio/mpeg" />
+        Seu navegador não suporta áudio.
+      </audio>
     </div>
   );
 }
