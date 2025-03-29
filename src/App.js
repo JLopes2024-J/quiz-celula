@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const questions = [
   {
@@ -31,18 +31,8 @@ const questions = [
 function App() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
-  const [musicPlaying, setMusicPlaying] = useState(false);
+  const [isStarted, setIsStarted] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
-
-  const musicRef = React.createRef();
-
-  useEffect(() => {
-    if (musicPlaying) {
-      musicRef.current.play();
-    } else {
-      musicRef.current.pause();
-    }
-  }, [musicPlaying]);
 
   const handleAnswer = (index) => {
     const correctAnswer = questions[currentQuestion].correct;
@@ -58,59 +48,72 @@ function App() {
     }
   };
 
-  const handleMusicToggle = () => {
-    setMusicPlaying(!musicPlaying);
-  };
-
   const handleStartGame = () => {
+    setIsStarted(true);
     setCurrentQuestion(0);
     setScore(0);
     setIsFinished(false);
-    setMusicPlaying(true);
+  };
+
+  const handleRestartGame = () => {
+    setIsStarted(false);
+    setCurrentQuestion(0);
+    setScore(0);
+    setIsFinished(false);
   };
 
   return (
     <div className="App" style={{ textAlign: "center", padding: "20px" }}>
-      <button onClick={handleStartGame} style={{ padding: "10px", marginBottom: "20px" }}>
-        🎮 Iniciar Quiz
-      </button>
-      <button onClick={handleMusicToggle} style={{ padding: "10px", marginBottom: "20px" }}>
-        {musicPlaying ? "🔇 Pausar Música" : "🔊 Tocar Música"}
-      </button>
-
-      {!isFinished ? (
+      {!isStarted ? (
+        <button
+          onClick={handleStartGame}
+          style={{ padding: "10px", marginBottom: "20px", fontSize: "18px" }}
+        >
+          🎮 Iniciar Quiz
+        </button>
+      ) : (
         <div>
-          <h2>{questions[currentQuestion].question}</h2>
-          <div>
-            {questions[currentQuestion].answers.map((answer, index) => (
+          {!isFinished ? (
+            <div>
+              <h2>{questions[currentQuestion].question}</h2>
+              <div>
+                {questions[currentQuestion].answers.map((answer, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleAnswer(index)}
+                    style={{
+                      padding: "10px",
+                      margin: "5px",
+                      backgroundColor: "lightblue",
+                      borderRadius: "5px",
+                    }}
+                  >
+                    {answer}
+                  </button>
+                ))}
+              </div>
+              <p>Pontuação: {score}</p>
+            </div>
+          ) : (
+            <div>
+              <h2>Fim do jogo!</h2>
+              <p>Sua pontuação: {score} de {questions.length}</p>
               <button
-                key={index}
-                onClick={() => handleAnswer(index)}
+                onClick={handleRestartGame}
                 style={{
                   padding: "10px",
-                  margin: "5px",
-                  backgroundColor: "lightblue",
+                  margin: "10px",
+                  backgroundColor: "green",
+                  color: "white",
                   borderRadius: "5px",
                 }}
               >
-                {answer}
+                Reiniciar Quiz
               </button>
-            ))}
-          </div>
-          <p>Pontuação: {score}</p>
-        </div>
-      ) : (
-        <div>
-          <h2>Fim do jogo!</h2>
-          <p>Sua pontuação: {score} de {questions.length}</p>
+            </div>
+          )}
         </div>
       )}
-
-      {/* Música */}
-      <audio ref={musicRef} loop>
-        <source src="https://www.myinstants.com/media/sounds/super-mario-bros.mp3" type="audio/mpeg" />
-        Seu navegador não suporta áudio.
-      </audio>
     </div>
   );
 }
