@@ -12,7 +12,7 @@ function App() {
   const [isNameSelected, setIsNameSelected] = useState(false); // Estado para verificar se o nome foi selecionado
 
   // Lista de nomes
-  const nameList = ["Julia", "Gaby", "Lívia", "João", "Vinicius", "Ana", "Paulo", "Vacilei"];
+  const nameList = ["Julia", "Gaby", "Lívia", "João", "Vinicius", "Ana", "Paulo", "Vacilei", "Miguel", "Leandro"];
 
   // Função para selecionar o nome do jogador
   const handleNameSelect = (selectedName) => {
@@ -72,7 +72,9 @@ function App() {
       Vinicius: "Rapaz, tu vigia na Terra, viu?",
       Ana: "To com uma dorzinha aqui no joelho, arruma um atestado?",
       Paulo: "Livro de Tombares 2, 5: 'Esteja sempre pronto para ser tombado'",
-      Vacilei: "Mas qual era a dificuldade em apertar um botão?"
+      Vacilei: "Mas qual era a dificuldade em apertar um botão?",
+      Miguel: "Eu não sei o que dizer sobre você não kkkkkkk",
+      Leandro: "Ta colocando whey na oração, filho?"
     };
 
     // Retorna a mensagem personalizada de acordo com o nome
