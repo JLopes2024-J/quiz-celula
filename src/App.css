@@ -83,8 +83,7 @@ p {
   text-align: center;
 }
 
-
-
+/* Seção de Seleção de Nome */
 .name-selection {
   margin-top: 20px;
 }
@@ -96,4 +95,72 @@ p {
   border-radius: 5px;
   background-color: lightgreen;
   cursor: pointer;
+}
+
+/* Estilo de texto com cor vermelha */
+.p1 {
+  color: #ff0000;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: smaller;
+}
+
+/* Media Queries para dispositivos móveis */
+@media (max-width: 768px) {
+  .button-start,
+  .button-answer,
+  .button-restart {
+    padding: 8px 15px;
+    font-size: 16px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
+  .App {
+    padding: 15px;
+    width: 90%;
+  }
+
+  .name-selection button {
+    padding: 8px;
+    font-size: 14px;
+    margin: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .button-start,
+  .button-answer,
+  .button-restart {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  .App {
+    padding: 10px;
+    width: 100%;
+  }
+
+  .name-selection button {
+    padding: 6px;
+    font-size: 12px;
+    margin: 6px;
+  }
+
+  .p1 {
+    font-size: x-small;
+  }
 }

@@ -12,7 +12,7 @@ function App() {
   const [isNameSelected, setIsNameSelected] = useState(false); // Estado para verificar se o nome foi selecionado
 
   // Lista de nomes
-  const nameList = ["João", "Maria", "Pedro", "Ana", "Lucas"];
+  const nameList = ["Julia", "Gaby", "Lívia", "Leandro", "João", "Vinicius", "Ana", "Jorgiane", "Paulo", "Vacilei"];
 
   // Função para selecionar o nome do jogador
   const handleNameSelect = (selectedName) => {
@@ -54,15 +54,20 @@ function App() {
   // Função para exibir uma frase personalizada dependendo do nome
   const getCustomMessage = () => {
     const customMessages = {
-      João: "Você escolheu João! Boa sorte, João, você vai arrasar!",
-      Maria: "Maria, você vai arrasar no quiz! Prepare-se!",
-      Pedro: "Pedro, bora mostrar sua sabedoria!",
-      Ana: "Ana, temos certeza de que você será incrível no quiz!",
-      Lucas: "Lucas, capriche nas respostas e mostre seu conhecimento!",
+      Julia: "(...)",
+      Gaby: "E o Pix, nada ainda?",
+      Lívia: "Sumiu por tanto tempo que achamos que foi arrebatada com Elias",
+      Leandro: "Tá misturando Whey na oração, filho? ",
+      João: "Tem mistério chegando, tu se apruma, viu?",
+      Vinicius: "Rapaz, tu vigia na Terra, viu?", 
+      Ana : "To com uma dorzinha aqui no joelho, arruma um atestado?" , 
+      Jorgiane: "É, tem muito o que dizer não",
+      Paulo: "Livro de Tombares 2, 5: 'Esteja sempre pronto para ser tombado'", 
+      Vacilei: "Mas qual era a dificuldade em apertar um botão?"
     };
 
     // Retorna a mensagem personalizada de acordo com o nome
-    return customMessages[name] || `Bem-vindo, ${name}! Prepare-se para o quiz!`;
+    return customMessages[name] || `${name}, prepare-se para o quiz!`;
   };
 
   return (
@@ -70,6 +75,8 @@ function App() {
       {!isNameSelected ? (
         <div className="name-selection">
           <h2>Selecione seu nome antes de começar:</h2>
+          <p className="p1">Clique em vacilei se não votou na enquete</p>
+
           <div>
             {nameList.map((nameOption, index) => (
               <button
