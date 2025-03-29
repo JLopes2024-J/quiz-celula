@@ -12,7 +12,7 @@ function App() {
   const [isNameSelected, setIsNameSelected] = useState(false); // Estado para verificar se o nome foi selecionado
 
   // Lista de nomes
-  const nameList = ["Julia", "Gaby", "Lívia", "Leandro", "João", "Vinicius", "Ana", "Paulo", "Vacilei"];
+  const nameList = ["Julia", "Gaby", "Lívia", "João", "Vinicius", "Ana", "Paulo", "Vacilei"];
 
   // Função para selecionar o nome do jogador
   const handleNameSelect = (selectedName) => {
@@ -68,7 +68,6 @@ function App() {
       Julia: "(...)",
       Gaby: "E o Pix, nada ainda?",
       Lívia: "Sumiu por tanto tempo que achamos que foi arrebatada com Elias",
-      Leandro: "Tá misturando Whey na oração, filho?",
       João: "Tem mistério chegando, tu se apruma, viu?",
       Vinicius: "Rapaz, tu vigia na Terra, viu?",
       Ana: "To com uma dorzinha aqui no joelho, arruma um atestado?",
