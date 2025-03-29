@@ -1,24 +1,99 @@
+/* Estilo do corpo da página */
 body {
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  margin: 0;
+  background-color: #f4f4f4;
+  text-align: center;
 }
 
-button {
-  cursor: pointer;
-  border: none;
+/* Estilo do botão de Iniciar Quiz */
+.button-start {
+  padding: 10px 20px;
+  font-size: 18px;
   background-color: #007bff;
   color: white;
-  font-size: 18px;
-  padding: 10px;
-  margin: 10px;
+  border: none;
   border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-button:hover {
+.button-start:hover {
   background-color: #0056b3;
+}
+
+/* Estilo para os botões de resposta */
+.button-answer {
+  padding: 10px 20px;
+  margin: 5px;
+  background-color: lightblue;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.button-answer:hover {
+  background-color: #5bc0de;
+}
+
+/* Estilo para o botão de reiniciar o quiz */
+.button-restart {
+  padding: 10px 20px;
+  margin: 10px;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button-restart:hover {
+  background-color: darkgreen;
+}
+
+/* Estilo para os títulos */
+h2 {
+  font-size: 24px;
+  color: #333;
+}
+
+/* Estilo da pontuação */
+p {
+  font-size: 18px;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Estilo geral do App */
+.App {
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+}
+
+
+
+.name-selection {
+  margin-top: 20px;
+}
+
+.name-selection button {
+  padding: 10px;
+  font-size: 16px;
+  margin: 10px;
+  border-radius: 5px;
+  background-color: lightgreen;
+  cursor: pointer;
 }
