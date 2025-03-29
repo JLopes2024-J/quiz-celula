@@ -1,6 +1,6 @@
 // src/App.js
-import React, { useState } from "react";
-import { questions } from "./questions"; // Importando as perguntas de outro arquivo
+import React, { useState, useEffect } from "react";
+import { questions, shuffleQuestions } from "./questions"; // Importando a função para embaralhar as perguntas
 import './App.css'; // Importando o CSS
 
 function App() {
@@ -37,6 +37,7 @@ function App() {
 
   // Função para iniciar o jogo
   const handleStartGame = () => {
+    shuffleQuestions(); // Embaralha as perguntas antes de iniciar
     setIsStarted(true);
     setCurrentQuestion(0);
     setScore(0);
@@ -57,8 +58,8 @@ function App() {
     setCurrentQuestion(0);
     setScore(0);
     setIsFinished(false);
-// Redireciona para outra URL
-window.location.href = 'https://youtu.be/d7uavQgpcZE?si=5iggil_v99Bljd4t';  // Substitua pelo URL desejado
+    // Redireciona para outra URL
+    window.location.href = 'https://youtu.be/d7uavQgpcZE?si=5iggil_v99Bljd4t';  // Substitua pelo URL desejado
   };
 
   // Função para exibir uma frase personalizada dependendo do nome
@@ -127,35 +128,21 @@ window.location.href = 'https://youtu.be/d7uavQgpcZE?si=5iggil_v99Bljd4t';  // S
             </div>
           ) : (
             <div>
-              <h2>Fim do jogo!</h2>
-              <p>
-                {name}, você acertou {score} de {questions.length} (
-                {((score / questions.length) * 100).toFixed(2)}%)
-              </p>
-            
-              {/* Mensagem condicional quando o score for menor que 3 */}
-              {score < 3 && (
-                <p style={{ color: 'red', fontWeight: 'bold' }}>
-                  Você pode melhorar! Tente novamente.
-                </p>
-              )}
-            
-              {/* Mensagem condicional e botão quando o score for maior que 3 */}
-              {score > 3 && (
-                <>
-                  <p style={{ color: 'blue', fontWeight: 'bold' }}>
-                    Aí sim! Já tira um print disso para mandar no grupo da Célula! <i>Tira antes de clicar no botão de finalizar</i>
-                  </p>
-                  <button className="button-restart" onClick={handleFinishGame}>
-                    Finalizar
-                  </button>
-                </>
-              )}
-            
-              <button className="button-restart" onClick={handleRestartGame}>
-                Reiniciar Quiz
-              </button>
-            </div>
+            <h2>Fim do jogo!</h2>
+            <p>
+              {name}, você acertou {score} de {questions.length} questões.
+            </p>
+      
+            {/* Exibe o botão "Recomeçar" se o jogador acertou menos de 7 questões */}
+            {score < 7 && (
+              <button className="button-restart" onClick={handleRestartGame}>Recomeçar</button>
+            )}
+      
+            {/* Exibe o botão "Finalizar" se o jogador acertou 7 ou mais questões */}
+            {score >= 7 && (
+              <button className="button-restart" onClick={handleFinishGame}>Finalizar</button>
+            )}
+          </div>
           )}
         </div>
       )}
