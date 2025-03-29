@@ -58,7 +58,7 @@ function App() {
     setScore(0);
     setIsFinished(false);
 // Redireciona para outra URL
-window.location.href = 'https://www.youtube.com';  // Substitua pelo URL desejado
+window.location.href = 'https://youtu.be/d7uavQgpcZE?si=5iggil_v99Bljd4t';  // Substitua pelo URL desejado
   };
 
   // Função para exibir uma frase personalizada dependendo do nome
@@ -144,7 +144,7 @@ window.location.href = 'https://www.youtube.com';  // Substitua pelo URL desejad
               {score > 3 && (
                 <>
                   <p style={{ color: 'blue', fontWeight: 'bold' }}>
-                    Aí sim! Já tira um print disso para mandar no grupo da Célula!
+                    Aí sim! Já tira um print disso para mandar no grupo da Célula! <i>Tira antes de clicar no botão de finalizar</i>
                   </p>
                   <button className="button-restart" onClick={handleFinishGame}>
                     Finalizar
