@@ -51,18 +51,28 @@ function App() {
     setIsFinished(false);
   };
 
+  // Função para finalizar o jogo (mostrar a tela final)
+  const handleFinishGame = () => {
+    setIsStarted(true);
+    setCurrentQuestion(0);
+    setScore(0);
+    setIsFinished(false);
+// Redireciona para outra URL
+window.location.href = 'https://www.youtube.com';  // Substitua pelo URL desejado
+  };
+
   // Função para exibir uma frase personalizada dependendo do nome
   const getCustomMessage = () => {
     const customMessages = {
       Julia: "(...)",
       Gaby: "E o Pix, nada ainda?",
       Lívia: "Sumiu por tanto tempo que achamos que foi arrebatada com Elias",
-      Leandro: "Tá misturando Whey na oração, filho? ",
+      Leandro: "Tá misturando Whey na oração, filho?",
       João: "Tem mistério chegando, tu se apruma, viu?",
-      Vinicius: "Rapaz, tu vigia na Terra, viu?", 
-      Ana : "To com uma dorzinha aqui no joelho, arruma um atestado?" , 
+      Vinicius: "Rapaz, tu vigia na Terra, viu?",
+      Ana: "To com uma dorzinha aqui no joelho, arruma um atestado?",
       Jorgiane: "É, tem muito o que dizer não",
-      Paulo: "Livro de Tombares 2, 5: 'Esteja sempre pronto para ser tombado'", 
+      Paulo: "Livro de Tombares 2, 5: 'Esteja sempre pronto para ser tombado'",
       Vacilei: "Mas qual era a dificuldade em apertar um botão?"
     };
 
@@ -118,7 +128,30 @@ function App() {
           ) : (
             <div>
               <h2>Fim do jogo!</h2>
-              <p>Sua pontuação: {score} de {questions.length}</p>
+              <p>
+                {name}, você acertou {score} de {questions.length} (
+                {((score / questions.length) * 100).toFixed(2)}%)
+              </p>
+            
+              {/* Mensagem condicional quando o score for menor que 3 */}
+              {score < 3 && (
+                <p style={{ color: 'red', fontWeight: 'bold' }}>
+                  Você pode melhorar! Tente novamente.
+                </p>
+              )}
+            
+              {/* Mensagem condicional e botão quando o score for maior que 3 */}
+              {score > 3 && (
+                <>
+                  <p style={{ color: 'blue', fontWeight: 'bold' }}>
+                    Aí sim! Já tira um print disso para mandar no grupo da Célula!
+                  </p>
+                  <button className="button-restart" onClick={handleFinishGame}>
+                    Finalizar
+                  </button>
+                </>
+              )}
+            
               <button className="button-restart" onClick={handleRestartGame}>
                 Reiniciar Quiz
               </button>
